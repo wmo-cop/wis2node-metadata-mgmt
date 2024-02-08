@@ -1,0 +1,53 @@
+name: Publish WCMP2 discovery metadata
+
+env:
+    WIS2_CENTRE_ID: ca-eccc-msc
+
+on:
+  push:
+    paths:
+      - '**.yml'   
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      name: Setup Python ${{ matrix.python-version }}
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install requirements
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install -U https://github.com/geopython/pygeometa/archive/master.zip
+    - name: Cache WCMP2 schemas for validation
+      run: |
+        pywcmp bundle sync
+    - name: make temporary directory
+      run: |
+        mkdir /tmp/wcmp2-records
+    - name: Generate WCMP2 records from MCFs
+      run: |
+        for i in metadata/mcf/*.yml; do pygeometa metadata generate --schema wmo-wcmp2 $i --output /tmp/wcmp2-records/`basename ${i%.yml}.json`; done
+    - name: checkout gh-pages branch
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+    - name: update gh-pages branch and publish
+      run: |
+        git checkout gh-pages
+        git config --global user.email "tomkralidis@gmail.com"
+        git config --global user.name "Tom Kralidis"
+        rm -rf *.json
+        mv -f /tmp/wcmp2-records/* .
+        git add .
+        git commit -am "update WMCP2 records"
+        git push
+    - name: Publish WNMs of WCMP2 records
+      run: |
+        for i in *.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core --config pywis-pubsub-config/publish.yml -u https://raw.githubusercontent.com/wmo-im/wis2node-metadata-mgmt/gh-pages/$i -i `cat /proc/sys/kernel/random/uuid`; done

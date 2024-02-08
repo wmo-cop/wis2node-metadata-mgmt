@@ -1,0 +1,2 @@
+broker: mqtt://localhost:1883
+publish_topic: origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core

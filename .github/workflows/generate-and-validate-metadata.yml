@@ -1,0 +1,39 @@
+name: Generate and validate WCMP2 discovery metadata
+
+env:
+    WIS2_CENTRE_ID: ca-eccc-msc
+
+on:
+  pull_request:
+    paths:
+      - '**.yml'   
+
+jobs:
+  main:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: [3.8]
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/setup-python@v2
+      name: Setup Python ${{ matrix.python-version }}
+      with:
+        python-version: ${{ matrix.python-version }}
+    - name: Install requirements
+      run: |
+        python3 -m pip install --upgrade pip
+        pip3 install -r requirements.txt
+        pip3 install -U https://github.com/geopython/pygeometa/archive/master.zip
+    - name: Cache WCMP2 schemas for validation
+      run: |
+        pywcmp bundle sync
+    - name: make temporary directory
+      run: |
+        mkdir /tmp/wcmp2-records
+    - name: Generate WCMP2 records from MCFs
+      run: |
+        for i in metadata/mcf/*.yml; do pygeometa metadata generate --schema wmo-wcmp2 $i --output /tmp/wcmp2-records/`basename ${i%.yml}.json`; done
+    - name: Validate WCMP2 records
+      run: |
+        for i in /tmp/wcmp2-records/*.json; do pywcmp ets validate $i; done

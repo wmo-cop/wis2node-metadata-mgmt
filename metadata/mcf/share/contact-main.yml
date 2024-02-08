@@ -1,0 +1,12 @@
+contact:
+    host:
+        organization: Government of Canada; Environment and Climate Change Canada; Meteorological Service of Canada
+        url: https://www.canada.ca/en/environment-climate-change.html
+        phone: '+18199972800'
+        fax: '+15064516010'
+        address: 77 Westmorland Street, suite 260
+        city: Fredericton
+        administrativearea: New Brunswick
+        postalcode: E3B 6Z4
+        country: Canada
+        email: you@example.org
