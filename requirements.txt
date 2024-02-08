@@ -1,3 +1,0 @@
-pygeometa
-pywcmp
-pywis-pubsub

@@ -25,8 +25,8 @@ jobs:
     - name: Install requirements
       run: |
         python3 -m pip install --upgrade pip
-        pip3 install -r requirements.txt
-        pip3 install -U https://github.com/geopython/pygeometa/archive/master.zip
+        pip3 install https://github.com/geopython/pygeometa/archive/master.zip
+        pip3 install https://github.com/geopython/wmo-im/pywis-pubsub/archive/main.zip
     - name: Cache WCMP2 schemas for validation
       run: |
         pywcmp bundle sync
@@ -51,5 +51,8 @@ jobs:
         git commit -am "update WMCP2 records"
         git push
     - name: Publish WNMs of WCMP2 records
+      uses: actions/checkout@v3
+      with:
+        ref: main
       run: |
-        for i in *.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core --config .github/workflows/pywis-pubsub-config/publish.yml -u https://raw.githubusercontent.com/wmo-im/wis2node-metadata-mgmt/gh-pages/$i -i `cat /proc/sys/kernel/random/uuid`; done
+        for i in *.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core --config .github/workflows/pywis-pubsub-config/publish.yml -u https://wmo-cop.github.io/wis2node-metadata-mgmt/$i -i `cat /proc/sys/kernel/random/uuid`; done
