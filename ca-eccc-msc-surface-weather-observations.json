@@ -33,7 +33,7 @@
     },
     "properties": {
         "identifier": "urn:x-wmo:md:ca-eccc-msc:surface-weather-observations",
-        "title": "Surface weather observations from Canada test13",
+        "title": "Surface weather observations from Canada test14",
         "description": "Surface weather observations from Canada",
         "themes": [
             {
