@@ -50,4 +50,4 @@ jobs:
         git push
     - name: Publish WNMs of WCMP2 records
       run: |
-        for i in *.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core --config pywis-pubsub-config/publish.yml -u https://raw.githubusercontent.com/wmo-im/wis2node-metadata-mgmt/gh-pages/$i -i `cat /proc/sys/kernel/random/uuid`; done
+        for i in *.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata/core --config .github/workflows/pywis-pubsub-config/publish.yml -u https://raw.githubusercontent.com/wmo-im/wis2node-metadata-mgmt/gh-pages/$i -i `cat /proc/sys/kernel/random/uuid`; done
