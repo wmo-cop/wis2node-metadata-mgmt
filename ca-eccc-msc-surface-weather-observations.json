@@ -1,5 +1,5 @@
 {
-    "id": "urn:x-wmo:md:ca-eccc-msc:surface-weather-observations",
+    "id": "urn:wmo:md:ca-eccc-msc:surface-weather-observations",
     "conformsTo": [
         "http://wis.wmo.int/spec/wcmp/2/conf/core"
     ],
@@ -32,7 +32,7 @@
         ]
     },
     "properties": {
-        "identifier": "urn:x-wmo:md:ca-eccc-msc:surface-weather-observations",
+        "identifier": "urn:wmo:md:ca-eccc-msc:surface-weather-observations",
         "title": "Surface weather observations from Canada",
         "description": "Surface weather observations from Canada",
         "themes": [
@@ -42,7 +42,7 @@
                         "id": "weather"
                     }
                 ],
-                "scheme": "https://codes.wmo.int/topic-hierarchy/earth-system-discipline/weather/surface-based-observartions/synop"
+                "scheme": "https://codes.wmo.int/topic-hierarchy/earth-system-discipline"
             }
         ],
         "language": "en",
