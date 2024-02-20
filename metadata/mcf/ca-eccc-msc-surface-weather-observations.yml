@@ -5,7 +5,7 @@ mcf:
     version: 1.0
 
 metadata:
-    identifier: urn:x-wmo:md:${WIS2_CENTRE_ID}:surface-weather-observations
+    identifier: urn:wmo:md:${WIS2_CENTRE_ID}:surface-weather-observations
     hierarchylevel: dataset
     language: en
     charset: utf8
