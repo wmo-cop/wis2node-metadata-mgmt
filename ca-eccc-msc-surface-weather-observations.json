@@ -98,7 +98,7 @@
             "type": "application/json",
             "rel": "canonical",
             "title": "notifications",
-            "channel": "origin/a/wis2/ec-eccc-msc/data/core/surface-weather-observations/synop"
+            "channel": "origin/a/wis2/ca-eccc-msc/data/core/surface-weather-observations/synop"
         }
     ],
     "time": {
