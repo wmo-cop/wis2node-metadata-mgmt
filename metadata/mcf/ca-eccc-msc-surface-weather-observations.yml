@@ -53,5 +53,5 @@ distribution:
         rel: canonical
         name: notifications
         description: description in English
-        channel: origin/a/wis2/ec-eccc-msc/data/core/surface-weather-observations/synop
+        channel: origin/a/wis2/${WIS2_CENTRE_ID}/data/core/surface-weather-observations/synop
         function: download
