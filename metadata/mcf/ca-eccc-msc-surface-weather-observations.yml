@@ -16,7 +16,7 @@ spatial:
     geomtype: point
 
 identification:
-    title: Surface weather observations from Canada, test1
+    title: Surface weather observations from Canada, test2
     abstract: Surface weather observations from Canada
     rights: Users are granted free and unrestricted access to this data, without charge and with no conditions on use. Users are requested to attribute the producer of this data. WMO Unified Data Policy (Resolution 1 (Cg-Ext 2021))
     status: operational
