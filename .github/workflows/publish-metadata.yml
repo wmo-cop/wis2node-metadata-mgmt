@@ -49,6 +49,7 @@ jobs:
           git add .
           git commit -am "update WMCP2 records"
           git push
+          echo "WCMP2_UPDATE_LIST=`git diff --name-only HEAD HEAD~1`" >> $GITHUB_ENV
         else
           echo "No changes to push"
         fi
@@ -59,4 +60,5 @@ jobs:
         ref: main
     - name: Publish WNMs of WCMP2 records
       run: |
+        echo "test ", ${{ env.WCMP2_UPDATE_LIST }}
         for i in /tmp/wcmp2-records/*.json; do pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata --config .github/workflows/pywis-pubsub-config/publish.yml -u https://wmo-cop.github.io/wis2node-metadata-mgmt/`basename $i` -i `cat /proc/sys/kernel/random/uuid` -v DEBUG; done
