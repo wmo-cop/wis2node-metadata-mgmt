@@ -54,6 +54,13 @@ jobs:
           echo "No changes to push"
         fi
       shell: bash
+    - name: Wait for WCMP2 publication on GitHub pages to succeed
+      uses: lewagon/wait-on-check-action@v1.3.4
+      with:
+        ref: ${{ github.ref }}
+        check-name: 'pages build and deployment'
+        repo-token: ${{ secrets.GITHUB_TOKEN }}
+        wait-interval: 10
     - name: checkout main branch again
       uses: actions/checkout@master
       with:
