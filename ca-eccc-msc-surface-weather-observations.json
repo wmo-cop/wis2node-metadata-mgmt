@@ -32,8 +32,7 @@
         ]
     },
     "properties": {
-        "identifier": "urn:wmo:md:ca-eccc-msc:surface-weather-observations",
-        "title": "Surface weather observations from Canada, test4",
+        "title": "Surface weather observations from Canada, test5",
         "description": "Surface weather observations from Canada",
         "themes": [
             {
@@ -45,7 +44,9 @@
                 "scheme": "https://codes.wmo.int/topic-hierarchy/earth-system-discipline"
             }
         ],
-        "language": "en",
+        "language": {
+            "code": "en"
+        },
         "type": "dataset",
         "created": "2024-02-08T00:00:00Z",
         "rights": "Users are granted free and unrestricted access to this data, without charge and with no conditions on use. Users are requested to attribute the producer of this data. WMO Unified Data Policy (Resolution 1 (Cg-Ext 2021))",
