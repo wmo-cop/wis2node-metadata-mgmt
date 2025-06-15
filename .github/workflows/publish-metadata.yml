@@ -62,4 +62,4 @@ jobs:
         ref: main
     - name: Publish WNMs of WCMP2 records
       run: |
-        for i in ${{ env.WCMP2_UPDATE_LIST }}; do echo "Publishing WCMP2 file $i" && pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata --config .github/workflows/pywis-pubsub-config/publish.yml -u https://wmo-cop.github.io/wis2node-metadata-mgmt/`basename $i` -i `cat /proc/sys/kernel/random/uuid` -v DEBUG; done
+        for i in ${{ env.WCMP2_UPDATE_LIST }}; do echo "Publishing WCMP2 file $i" && pywis-pubsub publish --topic origin/a/wis2/${WIS2_CENTRE_ID}/metadata --config .github/workflows/pywis-pubsub-config/publish.yml -u https://wmo-cop.github.io/wis2node-metadata-mgmt/`basename $i` -v DEBUG; done
